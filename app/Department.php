@@ -2,21 +2,12 @@
 
 namespace App;
 
-use App\Scopes\TenantScope;
+use App\Traits\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
+    use BelongsToTenant;
+
     protected $guarded = [];
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new TenantScope);
-
-        static::creating(function($department) {
-            if(session()->has('tenant_id')) {
-                $department->tenant_id = session()->get('tenant_id');
-            }
-        });
-    }
 }

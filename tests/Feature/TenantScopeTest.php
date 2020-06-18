@@ -19,7 +19,7 @@ class TenantScopeTest extends TestCase
         $this->artisan('make:model Test -m');
 
         // find the migration file and check it has a tenant_id on it
-        $filename = $now->year . '_' . $now->format('m') . '_' . $now->format('d') . '_' . $now->format('h')
+        $filename = $now->year . '_' . $now->format('m') . '_' . $now->format('d') . '_' . $now->format('H')
             . $now->format('i') . $now->format('s') .
             '_create_tests_table.php';
         $this->assertTrue(File::exists(database_path('migrations/'.$filename)));
