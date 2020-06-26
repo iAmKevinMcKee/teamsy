@@ -1,7 +1,7 @@
-@extends('layouts.auth')
+@extends('layouts.base')
 @section('title', 'Create a new account')
 
-@section('content')
+@section('body')
     <div>
         @livewire('auth.register')
     </div>
