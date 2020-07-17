@@ -21,10 +21,9 @@ class AddUser extends Component
             'email' => 'required|email|unique:users',
             'department' => 'required|string',
             'title' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|boolean',
             'role' => 'required|string',
         ]);
-
 
     }
 
