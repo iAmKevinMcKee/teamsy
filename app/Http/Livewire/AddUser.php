@@ -6,9 +6,9 @@ use Livewire\Component;
 
 class AddUser extends Component
 {
-    public $name = "Jeffrey Way";
-    public $email = "jeff@lc.com";
-    public $department = 'human_resources';
+    public $name = "Kevin McKee";
+    public $email = "kevin@lc.com";
+    public $department = 'information_technology';
     public $title = "Instructor";
     public $photo;
     public $status = 1;
