@@ -64,7 +64,7 @@
                 </label>
                 <div class="flex flex-items-center">
                     <div>
-                        <input type="file" wire:model="application">
+                        <input type="file">
                     </div>
                 </div>
                 @error('application')

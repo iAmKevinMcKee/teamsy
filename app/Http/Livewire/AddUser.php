@@ -13,11 +13,11 @@ class AddUser extends Component
 
     public $name = "Kevin McKee";
     public $email = "kevin@lc.com";
-    public $department = 'information_technology';
+    public $department = 'Information Technology';
     public $title = "Instructor";
     public $photo;
     public $status = 1;
-    public $role = 'admin';
+    public $role = 'Admin';
 
     public function submit()
     {
