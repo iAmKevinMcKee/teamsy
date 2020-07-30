@@ -4,7 +4,6 @@
             <x-text-input
                 wire:model="name"
                 label="Name"
-                :required="true"
                 placeholder="Jeffrey Way"
                 class="col-span-6 sm:col-span-3"/>
 
@@ -12,7 +11,6 @@
                 wire:model="email"
                 type="email"
                 label="Email"
-                :required="true"
                 placeholder="jeffrey@laracasts.com"
                 class="col-span-6 sm:col-span-3"/>
 
@@ -21,16 +19,15 @@
                 <select wire:model="department"
                         id="department"
                         class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                    <option value="human_resources">Human Resources</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="information_technology">Information Technology</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Information Technology">Information Technology</option>
                 </select>
             </div>
 
             <x-text-input
                 wire:model="title"
                 label="Title"
-                :required="true"
                 placeholder="Instructor"
                 class="col-span-6 sm:col-span-3"/>
 
@@ -47,20 +44,31 @@
                                      alt="">
                             </div>
                         @else
-                        <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
+                            <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
                         @endif
                     </div>
                     <div>
                         <input type="file" wire:model="photo">
+                    </div>
+                    @error('photo')
+                    <div class="text-sm text-red-500 mt-2">{{ $message }}</div> @enderror
+                </div>
+            </div>
 
-                        @error('photo') <span class="error">{{ $message }}</span> @enderror
-
-                        <button wire:click="save">Save Photo</button>
+            <div class="col-span-6">
+                <label class="block text-sm leading-5 font-medium text-gray-700 mb-2">
+                    Application
+                </label>
+                <div class="flex flex-items-center">
+                    <div>
+                        <input type="file" wire:model="application">
                     </div>
                 </div>
+                @error('application')
+                <div class="text-sm text-red-500 mt-2">{{ $message }}</div> @enderror
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -78,9 +86,9 @@
                 <select wire:model="role"
                         id="role"
                         class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                    <option value="admin">Admin</option>
-                    <option value="manager">Manager</option>
-                    <option value="member">Team Member</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Member">Team Member</option>
                 </select>
             </div>
 
