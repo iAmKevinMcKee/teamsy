@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,4 +35,5 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', 'Auth\LogoutController')->name('logout');
 
     Route::view('password/confirm', 'auth.passwords.confirm')->name('password.confirm');
+    Route::get('/documents/{user}/{filename}', [DocumentController::class, 'show']);
 });

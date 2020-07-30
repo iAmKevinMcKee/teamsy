@@ -18,6 +18,7 @@ class AddUser extends Component
     public $photo;
     public $status = 1;
     public $role = 'Admin';
+    public $application;
 
     public function submit()
     {
@@ -29,11 +30,12 @@ class AddUser extends Component
             'status' => 'required|boolean',
             'role' => 'required|string',
             'photo' => 'image|max:1024', // 1MB Max
+            'application' => 'file|mimes:pdf|max:1024',
         ]);
 
         $filename = $this->photo->store('photos', 's3-public');
 
-        User::create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'department' => $this->department,
@@ -43,6 +45,22 @@ class AddUser extends Component
             'photo' => $filename,
             'password' => bcrypt(Str::random(16)),
         ]);
+
+        // filename - docname_1773271717732.pdf
+        $filename = pathinfo($this->application->getClientOriginalName(), PATHINFO_FILENAME)
+            . '_' . now()->timestamp . '.' . $this->application->getClientOriginalExtension();
+
+        // store private s3
+        $this->application->storeAs('/documents/' . $user->id . '/', $filename, 's3');
+
+        // create document in db
+        $user->documents()->create([
+            'type' => 'application',
+            'filename' => $filename,
+            'extension' => $this->application->getClientOriginalExtension(),
+            'size' => $this->application->getSize(),
+        ]);
+
 
         session()->flash('success', 'We Did It');
 

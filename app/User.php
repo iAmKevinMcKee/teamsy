@@ -57,4 +57,22 @@ class User extends Authenticatable
     {
         return $this->role == 'Human Resources';
     }
+
+    public function applicationUrl()
+    {
+        if($this->application()) {
+            return url('/documents/' . $this->id . '/' . $this->application()->filename);
+        }
+        return '#';
+    }
+
+    public function application()
+    {
+        return $this->documents()->where('type', 'application')->first();
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }
