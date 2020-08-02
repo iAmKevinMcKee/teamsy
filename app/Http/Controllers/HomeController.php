@@ -12,7 +12,10 @@ class HomeController extends Controller
         if(!auth()->check()) {
             return view('welcome');
         } else {
-            return view('dashboard');
+            if(session()->has('tenant_id')) {
+                return view('dashboard');
+            }
+            return view('super.dashboard');
         }
     }
 }

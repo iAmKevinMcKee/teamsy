@@ -64,6 +64,16 @@
                 </label>
                 <div class="flex flex-items-center">
                     <div>
+                    @if($application)
+                        <div class="flex-shrink-0 h-10 w-10 mr-4">
+                            <x-document-icon />
+                        </div>
+                    @endif
+                    </div>
+                    <div wire:loading wire:target="application">
+                        <x-loading class="mr-4" />
+                    </div>
+                    <div>
                         <input wire:model="application" type="file">
                     </div>
                 </div>
@@ -99,6 +109,9 @@
 
         <div class="mt-8 border-t border-gray-200 pt-5">
             <div class="flex justify-end">
+                <div wire:loading wire:target="submit">
+                    <x-loading class="mr-4" />
+                </div>
                 <span class="inline-flex rounded-md shadow-sm">
                     <button type="submit"
                             class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">

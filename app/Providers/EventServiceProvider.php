@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Livewire\Auth\Login;
 use App\Listeners\ClearTenantIdFromSession;
+use App\Listeners\RecordLogin;
 use App\Listeners\SetTenantIdInSession;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
@@ -24,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         \Illuminate\Auth\Events\Login::class => [
             SetTenantIdInSession::class,
+            RecordLogin::class,
         ],
         Logout::class => [
             ClearTenantIdFromSession::class,

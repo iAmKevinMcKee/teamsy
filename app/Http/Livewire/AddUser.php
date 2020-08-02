@@ -30,7 +30,7 @@ class AddUser extends Component
             'status' => 'required|boolean',
             'role' => 'required|string',
             'photo' => 'image|max:1024', // 1MB Max
-            'application' => 'file|mimes:pdf|max:1024',
+            'application' => 'file|mimes:pdf|max:10000',
         ]);
 
         $filename = $this->photo->store('photos', 's3-public');
@@ -61,9 +61,7 @@ class AddUser extends Component
             'size' => $this->application->getSize(),
         ]);
 
-
-        session()->flash('success', 'We Did It');
-
+        return redirect('/team');
     }
 
     public function render()

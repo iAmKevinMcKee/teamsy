@@ -15,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/load-logins', function() {
+    $users = App\User::withoutGlobalScopes()->whereNotNull('tenant_id')->get();
+    foreach($users as $user) {
+        factory(App\Login::class, 1)->create([
+            'user_id' => $user->id,
+            'tenant_id' => $user->tenant_id,
+            'created_at' => now(),
+        ]);
+    }
+});
+
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
 Route::middleware('guest')->group(function () {

@@ -2,10 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SetTenantIdInSession
+class RecordLogin
 {
     /**
      * Create the event listener.
@@ -26,7 +27,10 @@ class SetTenantIdInSession
     public function handle($event)
     {
         if($event->user->tenant_id) {
-            session()->put('tenant_id', $event->user->tenant_id);
+            Login::create([
+                'user_id' => $event->user->id,
+                'tenant_id' => $event->user->tenant_id,
+            ]);
         }
     }
 }
