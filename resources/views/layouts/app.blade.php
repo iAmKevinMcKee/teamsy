@@ -165,6 +165,24 @@
             </button>
         </div>
         <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
+            @if(session('impersonate'))
+            <div class="relative bg-indigo-600">
+                <div class="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                    <div class="pr-16 sm:text-center sm:px-16">
+                        <p class="font-medium text-white">
+                            <span>
+                                You are impersonating
+                            </span>
+                            <span class="block sm:ml-2 sm:inline-block">
+                                <a href="{{route('leave_impersonation')}}" class="text-white font-bold underline">
+                                    Leave &rarr;
+                                </a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="pt-2 pb-6 md:py-6">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h1 class="text-2xl font-semibold text-gray-900">@yield('title')</h1>
