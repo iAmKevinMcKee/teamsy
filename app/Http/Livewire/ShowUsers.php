@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use App\Tenant;
 use App\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowUsers extends Component
 {
+    use WithPagination;
+
     public $perPage = 10;
     public $sortField = 'name';
     public $sortAsc = true;
@@ -55,7 +58,7 @@ class ShowUsers extends Component
         }
 
         return view('livewire.show-users', [
-            'users' => $query->paginate($this->perPage),
+            'users' => $query->with('documents')->paginate($this->perPage),
         ]);
     }
 }

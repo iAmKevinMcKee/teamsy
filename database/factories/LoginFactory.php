@@ -6,7 +6,7 @@ use App\Login;
 use Faker\Generator as Faker;
 
 $factory->define(Login::class, function (Faker $faker) {
-    $randomDateTime = $faker->dateTimeBetween('-1 years', 'now');
+    $randomDateTime = $faker->dateTimeBetween('-6 hours', 'now');
     return [
         'user_id' => factory(App\User::class),
         'tenant_id' => factory(App\Tenant::class),

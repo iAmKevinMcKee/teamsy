@@ -24,7 +24,7 @@
                                     </dt>
                                     <dd class="flex items-baseline">
                                         <div class="text-2xl leading-8 font-semibold text-gray-900">
-                                            722
+                                            {{$subscribersCount}}
                                         </div>
                                     </dd>
                                 </dl>
@@ -56,7 +56,7 @@
                                     </dt>
                                     <dd class="flex items-baseline">
                                         <div class="text-2xl leading-8 font-semibold text-gray-900">
-                                            5,201
+                                            {{$usersCount}}
                                         </div>
                                     </dd>
                                 </dl>
@@ -88,7 +88,7 @@
                                     </dt>
                                     <dd class="flex items-baseline">
                                         <div class="text-2xl leading-8 font-semibold text-gray-900">
-                                            122,087
+                                            {{$loginsCount}}
                                         </div>
                                     </dd>
                                 </dl>

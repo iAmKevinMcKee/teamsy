@@ -38,7 +38,7 @@ Route::get('password/reset/{token}', 'Auth\PasswordResetController')->name('pass
 
 Route::middleware('auth')->group(function () {
     Route::get('/leave-impersonation', function () {
-        auth()->loginUsingId(session('impersonate'));
+        auth()->login(App\User::withoutGlobalScopes()->find(session('impersonate')));
         session()->remove('impersonate');
         session()->remove('tenant_id');
         return redirect()->to('/');

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Login;
+use App\Tenant;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +18,14 @@ class HomeController extends Controller
             if(session()->has('tenant_id')) {
                 return view('dashboard');
             }
-            return view('super.dashboard');
+            $subscribersCount = Tenant::count();
+            $usersCount = User::count();
+            $loginsCount = Login::count();
+            return view('super.dashboard', [
+                'subscribersCount' => $subscribersCount,
+                'usersCount' => $usersCount,
+                'loginsCount' => $loginsCount,
+            ]);
         }
     }
 }
