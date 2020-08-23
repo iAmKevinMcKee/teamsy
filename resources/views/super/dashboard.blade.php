@@ -105,10 +105,6 @@
                     </div>
                 </div>
             </div>
-
-            <div>
-                <livewire:logins-chart />
-            </div>
         </div>
     </div>
 
