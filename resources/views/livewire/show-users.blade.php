@@ -15,7 +15,7 @@
             <label for="tenant" class="block text-sm leading-5 font-medium text-gray-700">Tenant</label>
             <select wire:model="selectedTenant" id="tenant"
                     class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
-                <option value="null">Choose a Tenant</option>
+                <option value="">Choose a Tenant</option>
                 @foreach($tenants as $key => $tenant)
                     <option value="{{$key}}">{{$tenant}}</option>
                 @endforeach
@@ -60,8 +60,7 @@
                                              alt="">
                                     </div>
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$user->name}}
-                                            @if(! session()->has('tenant_id') && $user->tenant_id > 0) <a wire:click="impersonate({{$user->id}})" href="#" class="text-indigo-600 text-xs ml-1">Impersonate</a> @endif</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$user->name}}</div>
                                         <div class="text-sm leading-5 text-gray-500">{{$user->email}}</div>
                                     </div>
                                 </div>

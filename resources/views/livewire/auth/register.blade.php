@@ -13,7 +13,7 @@
                     <div class="mt-6">
                         <form wire:submit.prevent="register">
                             <x-text-input
-                                wire:model.debounce.100ms="name"
+                                wire:model.debounce.1000ms="name"
                                 type="text"
                                 label="Name"
                                 :required="true"

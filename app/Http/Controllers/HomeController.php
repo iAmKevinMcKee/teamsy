@@ -9,10 +9,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
     public function show()
     {
-        if(!auth()->check()) {
+        if (! auth()->check()) {
             return view('welcome');
         } else {
             if(session()->has('tenant_id')) {
