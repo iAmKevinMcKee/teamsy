@@ -30,6 +30,19 @@ class ShowUsers extends Component
         $this->sortField = $field;
     }
 
+    public function impersonate($userId)
+    {
+        if(! is_null(auth()->user()->tenant_id)) {
+            return;
+        }
+
+        $originalId = auth()->user()->id;
+        session()->put('impersonate', $originalId);
+        auth()->loginUsingId($userId);
+
+        return redirect('/team');
+    }
+
     public function mount()
     {
         if(session()->has('tenant_id')) {

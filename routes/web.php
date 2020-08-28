@@ -37,6 +37,8 @@ Route::view('password/reset', 'auth.passwords.email')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\PasswordResetController')->name('password.reset');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/leave-impersonation', [\App\Http\Controllers\ImpersonationController::class, 'leave'])->name('leave-impersonation');
+
     Route::view('/team', 'team')->name('team.index');
     Route::view('/team/add-user', 'users.create')->name('users.create');
 
