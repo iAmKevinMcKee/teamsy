@@ -24,6 +24,7 @@ Route::get('/load-logins', function() {
             'created_at' => now(),
         ]);
     }
+    return 'loaded';
 });
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
