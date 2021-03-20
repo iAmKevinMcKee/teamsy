@@ -1,16 +1,23 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace database\factories;
 
 use App\Login;
-use Faker\Generator as Faker;
+use App\Tenant;
+use App\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+class LoginFactory extends Factory
+{
+    protected $model = Login::class;
 
-$factory->define(Login::class, function (Faker $faker) {
-    $randomDateTime = $faker->dateTimeBetween('-6 hours', 'now');
-    return [
-        'user_id' => factory(App\User::class),
-        'tenant_id' => factory(App\Tenant::class),
-        'created_at' => $randomDateTime,
-        'updated_at' => $randomDateTime,
-    ];
-});
+    public function definition()
+    {
+        $randomDateTime = $this->faker->dateTimeBetween('-6 hours', 'now');
+        return [
+            'user_id' => User::factory(),
+            'tenant_id' => Tenant::factory(),
+            'created_at' => $randomDateTime,
+            'updated_at' => $randomDateTime,
+        ];
+    }
+}

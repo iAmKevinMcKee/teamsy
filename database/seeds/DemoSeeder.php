@@ -14,24 +14,24 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tenant::class, 3)->create();
+
+        Tenant::factory()->count(3)->create();
 
         foreach(Tenant::all() as $tenant) {
-            factory(User::class, 20)->create([
-                'tenant_id' => $tenant->id,
-            ]);
+            User::factory()->count(20)->create([
+                                                   'tenant_id' => $tenant->id,
+                                               ]);
         }
 
         foreach(User::all() as $user) {
-            factory(Login::class, 5)->create([
-                'user_id' => $user->id,
-                'tenant_id' => $user->tenant_id,
-            ]);
+            Login::factory()->count(5)->create([
+                                                   'user_id' => $user->id,
+                                                   'tenant_id' => $user->tenant_id,
+                                               ]);
         }
-
-        factory(User::class)->create([
-            'tenant_id' => null,
-            'email' => 'admin@admin.com',
-        ]);
+        User::factory()->count(1)->create([
+                                              'tenant_id' => null,
+                                              'email' => 'admin@admin.com',
+                                          ]);
     }
 }
