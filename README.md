@@ -24,10 +24,6 @@ Copy the .env.example file to .env
 
 `cp .env.example .env`
 
-Up your sail
-https://laravel.com/docs/8.x/sail
-`sail up`
-
 Update your .env file to connect to your local database.
 
 Generate your application keys
@@ -36,7 +32,7 @@ Generate your application keys
 
 Run the Demo Seeder to get started with a few tenants and some users
 
-`sail artisan migrate:fresh --seed`
+`php artisan migrate:fresh --seed`
 
 Install NPM Dependencies
 
