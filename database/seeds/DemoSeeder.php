@@ -19,19 +19,19 @@ class DemoSeeder extends Seeder
 
         foreach(Tenant::all() as $tenant) {
             User::factory()->count(20)->create([
-                                                   'tenant_id' => $tenant->id,
-                                               ]);
+                'tenant_id' => $tenant->id,
+            ]);
         }
 
         foreach(User::all() as $user) {
             Login::factory()->count(5)->create([
-                                                   'user_id' => $user->id,
-                                                   'tenant_id' => $user->tenant_id,
-                                               ]);
+                'user_id' => $user->id,
+                'tenant_id' => $user->tenant_id,
+            );
         }
         User::factory()->count(1)->create([
-                                              'tenant_id' => null,
-                                              'email' => 'admin@admin.com',
-                                          ]);
+            'tenant_id' => null,
+            'email' => 'admin@admin.com',
+       ]);
     }
 }
