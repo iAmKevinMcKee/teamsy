@@ -1,12 +1,19 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace database\factories;
 
 use App\Phone;
-use Faker\Generator as Faker;
+use App\Tenant;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Phone::class, function (Faker $faker) {
-    return [
-        'tenant_id' => factory(App\Tenant::class),
-    ];
-});
+class PhoneFactory extends Factory
+{
+    protected $model = Phone::class;
+
+    public function definition()
+    {
+        return [
+            'tenant_id' => Tenant::factory(),
+        ];
+    }
+}

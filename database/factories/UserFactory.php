@@ -1,10 +1,12 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace database\factories;
 
+use App\Tenant;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +18,23 @@ use Illuminate\Support\Str;
 | model instances for testing / seeding your application's database.
 |
 */
-
-$factory->define(User::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'role' => 'Admin',
-        'photo' => null,
-        'department' => $faker->sentence(2),
-        'title' => $faker->jobTitle,
-        'status' => 1,
-        'email_verified_at' => now(),
-        'password' => bcrypt('password'),
-        'remember_token' => Str::random(10),
-        'tenant_id' => factory(App\Tenant::class),
-    ];
-});
+class UserFactory extends Factory
+{
+    protected $model = User::class;
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'role' => 'Admin',
+            'photo' => null,
+            'department' => $this->faker->sentence(2),
+            'title' => $this->faker->jobTitle,
+            'status' => 1,
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
+            'tenant_id' => Tenant::factory(),
+        ];
+    }
+}
